@@ -1,0 +1,11 @@
+fastapi==0.110.0
+uvicorn[standard]==0.28.0
+python-multipart==0.0.9
+requests
+mediapipe==0.10.21
+opencv-python-headless
+numpy
+Pillow
+scikit-image
+sentencepiece
+av==12.3.0

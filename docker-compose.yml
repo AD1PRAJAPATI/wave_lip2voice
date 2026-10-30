@@ -1,0 +1,30 @@
+# Runs both models on the same GPU machine.
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      VOICECRAFT_URL: http://voicecraft:8080
+    volumes:
+      - ./weights:/app/weights
+      - ./data:/app/data
+    depends_on:
+      - voicecraft
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  voicecraft:
+    build: ./voicecraft_service
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
